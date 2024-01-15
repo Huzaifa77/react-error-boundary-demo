@@ -1,4 +1,5 @@
 import axios from "axios";
+// import { useErrorBoundary } from "react-error-boundary";
 
 type AxiosConfig = {
   method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD";
@@ -10,6 +11,7 @@ export const APIFetcher = async (
   url: string,
   args: AxiosConfig & Record<string, unknown> = { method: "GET" }
 ) => {
+  // const { showBoundary } = useErrorBoundary();
   try {
     const { method, body, headers, ...restConfigs } = args;
     const response = await axios({
@@ -22,7 +24,7 @@ export const APIFetcher = async (
 
     return response;
   } catch (error) {
-    console.log("🚀 ~ file: APIFetcher.ts:15 ~ APIFetcher ~ error:", error);
+    console.log("🚀 ~ APIFetcher ~ error:", error);
     throw error;
   }
 };
